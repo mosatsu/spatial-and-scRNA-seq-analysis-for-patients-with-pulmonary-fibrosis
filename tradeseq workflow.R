@@ -19,6 +19,12 @@ palette(brewer.pal(8, "Dark2"))
 load("TradeSeq.RData")
 DimPlot(ILDs, reduction = "umap", group.by = "seurat_clusters", pt.size = 1, label.size = 5, label=FALSE, raster=FALSE)
 DimPlot(ILDs, reduction = "umap", pt.size = 1, group.by = "celltype", label = FALSE, label.size = 3)
+ILDs <- AddModuleScore(object = ILDs,
+                      features = list(c("SPARC", "COL1A1", "MMP2", "THBS2", "CERCAM", "FBN1", "TNC", "POSTN", "LUM", "FKBP10", "CTHRC1", 
+                                        "COL3A1", "COL1A2", "COL6A3", "COL6A2", "COL5A1", "COL16A1", "COL5A2", "DCN","COL6A1")),
+                      name = "SM2_score1")
+FeaturePlot(ILDs,"SM2_score11", pt.size = 1,min.cutoff = 1)
+
 
 ## data extract from seurat object ##
 # UMAP, clustering data
